@@ -1,0 +1,14 @@
+{
+  "name": "noo",
+  "version": "0.0.1",
+  "description": "Create new react native files that fit the IR workflow",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gant Laborde <gant@infinite.red> (http://github.com/gantman)",
+  "preferGlobal": true,
+  "license": "MIT",
+  "bin": {
+    "noo": "index.js"
+  }
+}
