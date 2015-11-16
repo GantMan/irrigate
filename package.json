@@ -1,5 +1,5 @@
 {
-  "name": "noo",
+  "name": "irrigate",
   "version": "0.0.1",
   "description": "Create new react native files that fit the IR workflow",
   "scripts": {
@@ -9,6 +9,6 @@
   "preferGlobal": true,
   "license": "MIT",
   "bin": {
-    "noo": "index.js"
+    "irrigate": "index.js"
   }
 }
