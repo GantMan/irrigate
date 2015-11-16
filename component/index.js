@@ -1,6 +1,12 @@
 #! /usr/bin/env node
 'use strict'
 
-var colors = require('colors')
+var colors = require('colors/safe')
+var generators = require('yeoman-generator')
 
-console.log(colors.yellow('irrigate component'))
+module.exports = generators.NamedBase.extend({
+  generateComponent: function () {
+    console.log(colors.yellow('irrigate component - ' + this.name))
+  }
+
+})
