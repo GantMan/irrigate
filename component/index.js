@@ -1,4 +1,4 @@
-#! /usr/bin/env babel-node
+#! /usr/bin/env node
 
 'use strict';
 
@@ -22,19 +22,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// var generators = require('yeoman-generator');
-// import generators from 'yeoman-generator'
-
 var MyGenerator = (function (_NamedBase) {
   _inherits(MyGenerator, _NamedBase);
 
   function MyGenerator() {
     _classCallCheck(this, MyGenerator);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(MyGenerator).apply(this, arguments));
-
-    _this.argument('appname');
-    return _this;
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(MyGenerator).apply(this, arguments));
   }
 
   _createClass(MyGenerator, [{

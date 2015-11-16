@@ -3,15 +3,14 @@
   "version": "0.0.1",
   "description": "Create new react native files that fit the IR workflow",
   "files": [
-    "generators/app",
-    "generators/screen",
-    "generators/component"
+    "app",
+    "screen",
+    "component"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dos2unix": "find . -type f -exec dos2unix {} \\;",
-    "compile": "babel -d generators/ src/",
-    "prepublish": "npm run compile"
+    "compile": "babel -d ./ src/"
   },
   "author": "Gant Laborde <gant@infinite.red> (http://github.com/gantman)",
   "preferGlobal": true,
