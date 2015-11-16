@@ -1,8 +1,8 @@
 #! /usr/bin/env node
 'use strict'
 
-var colors = require('colors/safe')
-var generators = require('yeoman-generator')
+import colors from 'colors/safe'
+import generators from 'yeoman-generator'
 
 module.exports = generators.NamedBase.extend({
   generateComponent: function () {

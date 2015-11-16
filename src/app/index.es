@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 'use strict'
-var generators = require('yeoman-generator')
+import generators from 'yeoman-generator'
 
 module.exports = generators.NamedBase.extend({
   method1: function () {
