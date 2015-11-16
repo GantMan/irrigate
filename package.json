@@ -1,7 +1,12 @@
 {
-  "name": "irrigate",
+  "name": "generator-irrigate",
   "version": "0.0.1",
   "description": "Create new react native files that fit the IR workflow",
+  "files": [
+    "app",
+    "screen",
+    "component"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,5 +15,18 @@
   "license": "MIT",
   "bin": {
     "irrigate": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git:://github.com/gantman/generator-irrigate.git"
+  },
+  "keywords": [
+    "react-native",
+    "yeoman-generator",
+    "infinite red"
+  ],
+  "dependencies": {
+    "colors": "^1.1.2",
+    "yeoman-generator": "^0.21.1"
   }
 }
