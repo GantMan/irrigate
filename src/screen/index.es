@@ -2,11 +2,11 @@
 'use strict'
 
 import colors from 'colors/safe'
-import generators from 'yeoman-generator'
+import { NamedBase } from 'yeoman-generator'
 
-module.exports = generators.NamedBase.extend({
-  generateComponent: function () {
+export default class MyGenerator extends NamedBase {
+
+  generateComponent () {
     console.log(colors.yellow('irrigate screen - ' + this.name))
   }
-
-})
+}

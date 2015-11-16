@@ -41,4 +41,4 @@ var MyGenerator = (function (_NamedBase) {
   return MyGenerator;
 })(_yeomanGenerator.NamedBase);
 
-exports.default = MyGenerator;
+module.exports = MyGenerator;
