@@ -1,13 +1,14 @@
 #! /usr/bin/env node
 'use strict'
 
-import colors from 'colors/safe'
+import Generator from '../Generator'
 import { NamedBase } from 'yeoman-generator'
 
 class ScreenGenerator extends NamedBase {
 
-  generateScreen () {
-    console.log(colors.yellow('irrigate screen - ' + this.name))
+  generateFile () {
+    console.log('IRrigate screen - ' + this.name)
+    Generator.createComponent('Screens', this.name)
   }
 }
 

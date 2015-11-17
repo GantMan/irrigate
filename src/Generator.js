@@ -1,4 +1,5 @@
 'use strict'
+
 import colors from 'colors/safe'
 import fs from 'fs'
 
@@ -37,8 +38,8 @@ export default StyleSheet.create({
 `
 
 const fileSign = function (path) {
-  const separator = colors.rainbow('-=-=-=-=-=-=-')
-  console.log(separator + colors.yellow(' "') + colors.underline(path) + colors.yellow('" was saved') + separator)
+  const separator = colors.rainbow('!-=-=-=-=-=-=-!')
+  console.log(separator + colors.yellow(' "') + colors.underline(path) + colors.yellow('" was saved ') + separator)
 }
 
 const createComponent = function (folder, fileName) {
@@ -59,12 +60,7 @@ const createComponent = function (folder, fileName) {
   })
 }
 
-if (process.argv.length < 4) {
-  console.log('Not enough params - noo [screen/component] FileName')
-} else if (process.argv[2].toLowerCase() === 'screen') {
-  console.log(colors.red('Creating Screen'))
-  createComponent('Screens', process.argv[3])
-} else {
-  console.log(colors.red('Creating Component'))
-  createComponent('Components', process.argv[3])
+export default {
+  fileSign,
+  createComponent
 }
