@@ -10,7 +10,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dos2unix": "find . -type f -exec dos2unix {} \\;",
-    "compile": "babel -d ./ src/"
+    "compile": "babel -d ./ src/",
+    "prepublish": "npm run compile"
   },
   "author": "Gant Laborde <gant@infinite.red> (http://github.com/gantman)",
   "preferGlobal": true,
@@ -20,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git:://github.com/gantman/generator-irrigate.git"
+    "url": "git:://github.com/GantMan/irrigate.git"
   },
   "keywords": [
     "react-native",

@@ -4,9 +4,11 @@
 import colors from 'colors/safe'
 import { NamedBase } from 'yeoman-generator'
 
-export default class MyGenerator extends NamedBase {
+class ScreenGenerator extends NamedBase {
 
-  generateComponent () {
+  generateScreen () {
     console.log(colors.yellow('irrigate screen - ' + this.name))
   }
 }
+
+module.exports = ScreenGenerator

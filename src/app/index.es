@@ -1,10 +1,14 @@
 #! /usr/bin/env node
 'use strict'
-import generators from 'yeoman-generator'
 
-module.exports = generators.NamedBase.extend({
-  method1: function () {
-    console.log('method 1 just ran - name was ' + this.name)
+import colors from 'colors/safe'
+import { NamedBase } from 'yeoman-generator'
+
+class AppGenerator extends NamedBase {
+
+  generateApp () {
+    console.log(colors.yellow('irrigate app - ' + this.name))
   }
+}
 
-})
+module.exports = AppGenerator

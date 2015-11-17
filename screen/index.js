@@ -4,10 +4,6 @@
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _safe = require('colors/safe');
 
 var _safe2 = _interopRequireDefault(_safe);
@@ -22,23 +18,23 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var MyGenerator = (function (_NamedBase) {
-  _inherits(MyGenerator, _NamedBase);
+var ScreenGenerator = (function (_NamedBase) {
+  _inherits(ScreenGenerator, _NamedBase);
 
-  function MyGenerator() {
-    _classCallCheck(this, MyGenerator);
+  function ScreenGenerator() {
+    _classCallCheck(this, ScreenGenerator);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(MyGenerator).apply(this, arguments));
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(ScreenGenerator).apply(this, arguments));
   }
 
-  _createClass(MyGenerator, [{
-    key: 'generateComponent',
-    value: function generateComponent() {
+  _createClass(ScreenGenerator, [{
+    key: 'generateScreen',
+    value: function generateScreen() {
       console.log(_safe2.default.yellow('irrigate screen - ' + this.name));
     }
   }]);
 
-  return MyGenerator;
+  return ScreenGenerator;
 })(_yeomanGenerator.NamedBase);
 
-exports.default = MyGenerator;
+module.exports = ScreenGenerator;
