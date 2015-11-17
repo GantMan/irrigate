@@ -28,10 +28,10 @@ var ComponentGenerator = (function (_NamedBase) {
   }
 
   _createClass(ComponentGenerator, [{
-    key: 'generateComponent',
-    value: function generateComponent() {
-      console.log('irrigate component - ' + this.name);
-      _Generator2.default.createComponent('Components', this.name);
+    key: 'generateFile',
+    value: function generateFile() {
+      console.log('IRrigate component - ' + this.name);
+      _Generator2.default.hydrateComponent('Components', this.name);
     }
   }]);
 

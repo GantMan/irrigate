@@ -8,7 +8,7 @@ class ScreenGenerator extends NamedBase {
 
   generateFile () {
     console.log('IRrigate screen - ' + this.name)
-    Generator.createComponent('Screens', this.name)
+    Generator.hydrateComponent('Screens', this.name)
   }
 }
 

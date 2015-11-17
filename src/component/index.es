@@ -8,7 +8,7 @@ class ComponentGenerator extends NamedBase {
 
   generateFile () {
     console.log('IRrigate component - ' + this.name)
-    Generator.createComponent('Components', this.name)
+    Generator.hydrateComponent('Components', this.name)
   }
 }
 

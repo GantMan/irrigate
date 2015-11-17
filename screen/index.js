@@ -4,9 +4,9 @@
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _safe = require('colors/safe');
+var _Generator = require('../Generator');
 
-var _safe2 = _interopRequireDefault(_safe);
+var _Generator2 = _interopRequireDefault(_Generator);
 
 var _yeomanGenerator = require('yeoman-generator');
 
@@ -28,9 +28,10 @@ var ScreenGenerator = (function (_NamedBase) {
   }
 
   _createClass(ScreenGenerator, [{
-    key: 'generateScreen',
-    value: function generateScreen() {
-      console.log(_safe2.default.yellow('irrigate screen - ' + this.name));
+    key: 'generateFile',
+    value: function generateFile() {
+      console.log('IRrigate screen - ' + this.name);
+      _Generator2.default.hydrateComponent('Screens', this.name);
     }
   }]);
 

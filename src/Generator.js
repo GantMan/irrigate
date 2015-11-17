@@ -3,64 +3,67 @@
 import colors from 'colors/safe'
 import fs from 'fs'
 
-let baseComponentContent = `'use strict'
+const baseComponentContent = function (name) {
+  return `'use strict'
 
-import React, { ScrollView, View, Text } from 'react-native'
-var styles = require('../Styles/SomeScreenStyle')
+  import React, { ScrollView, View, Text } from 'react-native'
+  var styles = require('../Styles/${name}Style')
 
-export default class SomeScreenStyles extends React.Component {
+  export default class ${name} extends React.Component {
 
-  static propTypes = {
-    navigator: React.PropTypes.object
+    static propTypes = {
+      navigator: React.PropTypes.object
+    }
+
+    render () {
+      return (
+        <ScrollView style={styles.container}>
+          <Text>Some Component</Text>
+        </ScrollView>
+      )
+    }
   }
-
-  render () {
-    return (
-      <ScrollView style={styles.container}>
-        <Text>Some Component</Text>
-      </ScrollView>
-    )
-  }
+  `
 }
-`
 
-let baseComponentStyle = `'use strict'
+const baseComponentStyle = function (name) {
+  return `'use strict'
 
-import { StyleSheet } from 'react-native'
-import { Fonts, Colors, Metrics } from '../Themes/'
+  import { StyleSheet } from 'react-native'
+  import { Fonts, Colors, Metrics } from '../Themes/'
 
-export default StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: Metrics.titlePadding
-  }
-})
-`
+  export default StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingTop: Metrics.titlePadding
+    }
+  })
+  `
+}
 
-const fileSign = function (path) {
+const createFile = function (path, contents) {
+  fs.writeFile(path, contents, function (err) {
+    if (err) {
+      return console.log(err)
+    }
+    fileSign(path)
+  })
+}
+
+export const fileSign = function (path) {
   const separator = colors.rainbow('!-=-=-=-=-=-=-!')
   console.log(separator + colors.yellow(' "') + colors.underline(path) + colors.yellow('" was saved ') + separator)
 }
 
-const createComponent = function (folder, fileName) {
+export const hydrateComponent = function (folder, fileName) {
   var fullFile = `./App/${folder}/${fileName}.js`
   var fullStyleFile = `./App/Styles/${fileName}Style.js`
-  fs.writeFile(fullFile, baseComponentContent, function (err) {
-    if (err) {
-      return console.log(err)
-    }
-    fileSign(fullFile)
-  })
 
-  fs.writeFile(fullStyleFile, baseComponentStyle, function (err) {
-    if (err) {
-      return console.log(err)
-    }
-    fileSign(fullStyleFile)
-  })
+  createFile(fullFile, baseComponentContent(fileName))
+  createFile(fullStyleFile, baseComponentStyle(fileName))
 }
 
 export default {
   fileSign,
-  createComponent
+  hydrateComponent
 }
