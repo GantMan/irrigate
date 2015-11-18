@@ -2,7 +2,7 @@
 
 Hydrate React components/styles and screens the InfiniteRed way.
 ## Requirements
-Make sure you have Yeoman:
+Make sure you have [Yeoman](http://yeoman.io/):
 
 `npm install -g yo`
 
