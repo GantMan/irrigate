@@ -20,6 +20,9 @@
     "type": "git",
     "url": "git:://github.com/GantMan/irrigate.git"
   },
+  "bin": {
+    "irrigate": "index.js"
+  },
   "keywords": [
     "react-native",
     "yeoman-generator",

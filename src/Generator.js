@@ -6,39 +6,39 @@ import fs from 'fs'
 const baseComponentContent = function (name) {
   return `'use strict'
 
-  import React, { ScrollView, View, Text } from 'react-native'
-  var styles = require('../Styles/${name}Style')
+import React, { ScrollView, View, Text } from 'react-native'
+var styles = require('../Styles/${name}Style')
 
-  export default class ${name} extends React.Component {
+export default class ${name} extends React.Component {
 
-    static propTypes = {
-      navigator: React.PropTypes.object
-    }
-
-    render () {
-      return (
-        <ScrollView style={styles.container}>
-          <Text>Some Component</Text>
-        </ScrollView>
-      )
-    }
+  static propTypes = {
+    navigator: React.PropTypes.object
   }
-  `
+
+  render () {
+    return (
+      <ScrollView style={styles.container}>
+        <Text>Some Component</Text>
+      </ScrollView>
+    )
+  }
+}
+`
 }
 
 const baseComponentStyle = function (name) {
   return `'use strict'
 
-  import { StyleSheet } from 'react-native'
-  import { Fonts, Colors, Metrics } from '../Themes/'
+import { StyleSheet } from 'react-native'
+import { Fonts, Colors, Metrics } from '../Themes/'
 
-  export default StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: Metrics.titlePadding
-    }
-  })
-  `
+export default StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: Metrics.titlePadding
+  }
+})
+`
 }
 
 const createFile = function (path, contents) {
