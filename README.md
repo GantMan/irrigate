@@ -10,6 +10,7 @@ Make sure you have [Yeoman](http://yeoman.io/):
 * `yo irrigate AppName` -- Coming Soon
 * `yo irrigate:screen ScreenName`
 * `yo irrigate:component ComponentName`
+* `yo irrigate:redux ActionReducerSet` -- Coming One Day :sunrise_over_mountains:
 
 
 ## When Developing
