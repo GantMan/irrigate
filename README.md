@@ -6,6 +6,10 @@ Make sure you have [Yeoman](http://yeoman.io/):
 
 `npm install -g yo`
 
+Now install irrigate generator
+
+`npm install -g generator-irrigate`
+
 ## Use
 * `yo irrigate AppName` -- Coming Soon
 * `yo irrigate:screen ScreenName`
