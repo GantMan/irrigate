@@ -12,8 +12,9 @@ Now install irrigate generator
 
 ## Use
 * `yo irrigate AppName` -- Coming Soon
-* `yo irrigate:screen ScreenName`
-* `yo irrigate:component ComponentName`
+* `yo irrigate:screen ContainerName` -- Simple container
+* `yo irrigate:screen ScreenName` -- An opinionated container
+* `yo irrigate:component ComponentName` -- Creates a base component
 * `yo irrigate:redux ActionReducerSet` -- Coming One Day :sunrise_over_mountains:
 
 

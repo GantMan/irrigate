@@ -4,12 +4,12 @@
 import Generator from '../Generator'
 import { NamedBase } from 'yeoman-generator'
 
-class ScreenGenerator extends NamedBase {
+class ContainerGenerator extends NamedBase {
 
   generateFile () {
-    console.log('IRrigate screen - ' + this.name)
+    console.log('IRrigate container - ' + this.name)
     Generator.hydrateComponent('Containers', this.name)
   }
 }
 
-module.exports = ScreenGenerator
+module.exports = ContainerGenerator
