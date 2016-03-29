@@ -13,7 +13,21 @@ var _fs = require('fs');
 
 var _fs2 = _interopRequireDefault(_fs);
 
+var _ramda = require('ramda');
+
+var _ramda2 = _interopRequireDefault(_ramda);
+
+var _mkdirp = require('mkdirp');
+
+var _mkdirp2 = _interopRequireDefault(_mkdirp);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var baseName = _ramda2.default.when(function (x) {
+  return _ramda2.default.eqBy(_ramda2.default.toLower, _ramda2.default.takeLast(3, x), '.js');
+}, function (y) {
+  return _ramda2.default.take(_ramda2.default.length(y) - 3, y);
+});
 
 var baseComponentContent = function baseComponentContent(name) {
   return '\'use strict\'\n\nimport React, { ScrollView, View, Text } from \'react-native\'\nvar styles = require(\'../Styles/' + name + 'Style\')\n\nexport default class ' + name + ' extends React.Component {\n\n  static propTypes = {\n    navigator: React.PropTypes.object\n  }\n\n  render () {\n    return (\n      <ScrollView style={styles.container}>\n        <Text>Some Component</Text>\n      </ScrollView>\n    )\n  }\n}\n';
@@ -38,8 +52,17 @@ var fileSign = exports.fileSign = function fileSign(path) {
 };
 
 var hydrateComponent = exports.hydrateComponent = function hydrateComponent(folder, fileName) {
-  var fullFile = './App/' + folder + '/' + fileName + '.js';
-  var fullStyleFile = './App/Styles/' + fileName + 'Style.js';
+  // Folders first
+  (0, _mkdirp2.default)('./App/' + folder, function (err) {
+    if (err) console.log(err);else console.log('Assured Folder ./App/' + folder);
+  });
+  (0, _mkdirp2.default)('./App/' + folder + '/Styles', function (err) {
+    if (err) console.log(err);else console.log('Assured Folder ./App/' + folder + '/Styles');
+  });
+
+  var baseFileName = baseName(fileName);
+  var fullFile = './App/' + folder + '/' + baseFileName + '.js';
+  var fullStyleFile = './App/' + folder + '/Styles/' + baseFileName + 'Style.js';
 
   createFile(fullFile, baseComponentContent(fileName));
   createFile(fullStyleFile, baseComponentStyle(fileName));

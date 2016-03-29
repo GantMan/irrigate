@@ -19,3 +19,6 @@ Now install irrigate generator
 
 ## When Developing
 Run `nmp link` to link this code base locally and so you don't have to keep reinstalling, you've got a symlink.
+
+## Compile
+Code is written in ES2015+, so `npm run compile` will babelfy the source.

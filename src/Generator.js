@@ -2,8 +2,15 @@
 
 import colors from 'colors/safe'
 import fs from 'fs'
+import R from 'ramda'
+import mkdirp from 'mkdirp'
 
-const baseComponentContent = function (name) {
+let baseName = R.when(
+  (x) => R.eqBy(R.toLower, R.takeLast(3, x), '.js'),
+  (y) => R.take(R.length(y) - 3, y)
+)
+
+const baseComponentContent = (name) => {
   return `'use strict'
 
 import React, { ScrollView, View, Text } from 'react-native'
@@ -26,7 +33,7 @@ export default class ${name} extends React.Component {
 `
 }
 
-const baseComponentStyle = function (name) {
+const baseComponentStyle = (name) => {
   return `'use strict'
 
 import { StyleSheet } from 'react-native'
@@ -41,7 +48,7 @@ export default StyleSheet.create({
 `
 }
 
-const createFile = function (path, contents) {
+const createFile = (path, contents) => {
   fs.writeFile(path, contents, function (err) {
     if (err) {
       return console.log(err)
@@ -50,14 +57,25 @@ const createFile = function (path, contents) {
   })
 }
 
-export const fileSign = function (path) {
+export const fileSign = (path) => {
   const separator = colors.rainbow('!-=-=-=-=-=-=-!')
   console.log(separator + colors.yellow(' "') + colors.underline(path) + colors.yellow('" was saved ') + separator)
 }
 
-export const hydrateComponent = function (folder, fileName) {
-  var fullFile = `./App/${folder}/${fileName}.js`
-  var fullStyleFile = `./App/Styles/${fileName}Style.js`
+export const hydrateComponent = (folder, fileName) => {
+  // Folders first
+  mkdirp(`./App/${folder}`, (err) => {
+    if (err) console.log(err)
+    else console.log(`Assured Folder ./App/${folder}`)
+  })
+  mkdirp(`./App/${folder}/Styles`, (err) => {
+    if (err) console.log(err)
+    else console.log(`Assured Folder ./App/${folder}/Styles`)
+  })
+
+  let baseFileName = baseName(fileName)
+  let fullFile = `./App/${folder}/${baseFileName}.js`
+  let fullStyleFile = `./App/${folder}/Styles/${baseFileName}Style.js`
 
   createFile(fullFile, baseComponentContent(fileName))
   createFile(fullStyleFile, baseComponentStyle(fileName))
