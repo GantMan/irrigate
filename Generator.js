@@ -16,11 +16,11 @@ var _fs2 = _interopRequireDefault(_fs);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var baseComponentContent = function baseComponentContent(name) {
-  return '\'use strict\'\n\n  import React, { ScrollView, View, Text } from \'react-native\'\n  var styles = require(\'../Styles/' + name + 'Style\')\n\n  export default class ' + name + ' extends React.Component {\n\n    static propTypes = {\n      navigator: React.PropTypes.object\n    }\n\n    render () {\n      return (\n        <ScrollView style={styles.container}>\n          <Text>Some Component</Text>\n        </ScrollView>\n      )\n    }\n  }\n  ';
+  return '\'use strict\'\n\nimport React, { ScrollView, View, Text } from \'react-native\'\nvar styles = require(\'../Styles/' + name + 'Style\')\n\nexport default class ' + name + ' extends React.Component {\n\n  static propTypes = {\n    navigator: React.PropTypes.object\n  }\n\n  render () {\n    return (\n      <ScrollView style={styles.container}>\n        <Text>Some Component</Text>\n      </ScrollView>\n    )\n  }\n}\n';
 };
 
 var baseComponentStyle = function baseComponentStyle(name) {
-  return '\'use strict\'\n\n  import { StyleSheet } from \'react-native\'\n  import { Fonts, Colors, Metrics } from \'../Themes/\'\n\n  export default StyleSheet.create({\n    container: {\n      flex: 1,\n      paddingTop: Metrics.titlePadding\n    }\n  })\n  ';
+  return '\'use strict\'\n\nimport { StyleSheet } from \'react-native\'\nimport { Fonts, Colors, Metrics } from \'../Themes/\'\n\nexport default StyleSheet.create({\n  container: {\n    flex: 1,\n    paddingTop: Metrics.titlePadding\n  }\n})\n';
 };
 
 var createFile = function createFile(path, contents) {
