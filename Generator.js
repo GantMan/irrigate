@@ -28,6 +28,7 @@ var baseName = _ramda2.default.when(function (x) {
 }, function (y) {
   return _ramda2.default.take(_ramda2.default.length(y) - 3, y);
 });
+var folderError = "\n Are you sure you're in an IR project?";
 
 var baseComponentContent = function baseComponentContent(name) {
   return '\'use strict\'\n\nimport React, { ScrollView, View, Text } from \'react-native\'\nvar styles = require(\'../Styles/' + name + 'Style\')\n\nexport default class ' + name + ' extends React.Component {\n\n  static propTypes = {\n    navigator: React.PropTypes.object\n  }\n\n  render () {\n    return (\n      <ScrollView style={styles.container}>\n        <Text>Some Component</Text>\n      </ScrollView>\n    )\n  }\n}\n';
@@ -54,10 +55,10 @@ var fileSign = exports.fileSign = function fileSign(path) {
 var hydrateComponent = exports.hydrateComponent = function hydrateComponent(folder, fileName) {
   // Folders first
   (0, _mkdirp2.default)('./App/' + folder, function (err) {
-    if (err) console.log(err);else console.log('Assured Folder ./App/' + folder);
+    if (err) console.log(err + folderError);else console.log('Assured Folder ./App/' + folder);
   });
   (0, _mkdirp2.default)('./App/' + folder + '/Styles', function (err) {
-    if (err) console.log(err);else console.log('Assured Folder ./App/' + folder + '/Styles');
+    if (err) console.log(err + folderError);else console.log('Assured Folder ./App/' + folder + '/Styles');
   });
 
   var baseFileName = baseName(fileName);

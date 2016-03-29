@@ -10,6 +10,10 @@ var _safe2 = _interopRequireDefault(_safe);
 
 var _yeomanGenerator = require('yeoman-generator');
 
+var _shelljs = require('shelljs');
+
+var _shelljs2 = _interopRequireDefault(_shelljs);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31,6 +35,17 @@ var AppGenerator = function (_NamedBase) {
     key: 'generateApp',
     value: function generateApp() {
       console.log(_safe2.default.yellow('irrigate app - ' + this.name));
+
+      // verify react-native
+      if (!_shelljs2.default.which('react-native')) {
+        console.log(_safe2.default.red('This script requires react-native to be installed first.'));
+        _shelljs2.default.exit(1);
+      }
+
+      console.log('Time to get cooking!');
+
+      // react-native init this.name
+      _shelljs2.default.exec('ls -al');
     }
   }]);
 

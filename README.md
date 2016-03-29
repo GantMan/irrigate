@@ -16,6 +16,7 @@ Now install irrigate generator
 * `yo irrigate:screen ScreenName` -- An opinionated container
 * `yo irrigate:component ComponentName` -- Creates a base component
 * `yo irrigate:redux ActionReducerSet` -- Coming One Day :sunrise_over_mountains:
+* `yo irrigate:saga SagaName` -- Coming One Day :sunrise_over_mountains:
 
 
 ## When Developing
