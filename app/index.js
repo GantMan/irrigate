@@ -27,6 +27,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var TEMP_FOLDER = 'baseTemp';
+var templateGrab = function templateGrab(name, dir) {
+  return _shelljs2.default.cp('-R', name + '/' + TEMP_FOLDER + '/' + dir, name + '/' + dir);
+};
+var templatePut = function templatePut(gitRoot, templateRoot, file) {
+  return _shelljs2.default.cp(gitRoot + '/' + file, templateRoot + '/');
+};
 
 var AppGenerator = function (_NamedBase) {
   _inherits(AppGenerator, _NamedBase);
@@ -54,6 +60,15 @@ var AppGenerator = function (_NamedBase) {
         console.log(_safe2.default.red('This script requires git to be installed first.'));
         _shelljs2.default.exit(1);
       }
+
+      // verify rnpm
+      if (!_shelljs2.default.which('rnpm')) {
+        console.log(_safe2.default.red('This script requires rnpm to be installed.'));
+        _shelljs2.default.exec('npm i -g rnpm');
+      }
+
+      // Warn if outdated
+      _shelljs2.default.exec('npm outdated rnpm');
     }
   }, {
     key: 'makeDirectories',
@@ -65,20 +80,58 @@ var AppGenerator = function (_NamedBase) {
         }
       });
     }
+
+    // worth noting but requires template
+    // this.bulkCopy(`./${this.name}/${TEMP_FOLDER}/App`, `./${this.name}/App`)
+
+  }, {
+    key: 'copyOver',
+    value: function copyOver() {
+      // copy package.json
+      // copy index.ios.js/index.android.js/index.js
+      // copy git_hooks/
+      templateGrab(this.name, 'git_hooks');
+      // copy Tests/
+      templateGrab(this.name, 'Tests');
+      // copy App/
+      templateGrab(this.name, 'App');
+      // copy a Readme not ours
+      // TODO
+    }
   }, {
     key: 'generateApp',
     value: function generateApp() {
       console.log(_safe2.default.yellow('irrigate app - ') + this.name + ' ☕️ This will take a while ☕️ ');
+      var templateRoot = this.sourceRoot();
+      var gitRoot = this.name + '/' + TEMP_FOLDER;
+      // force overwrite on conflicts (default is ask user)
+      this.conflicter.force = true;
+
       // Fail if tools are missing
-      this.verifyTools();
-      // No clue why this is needed
-      console.log('When directory exists, please type `yes` to continue.');
-      // Create latest RN project
-      this.spawnCommandSync('react-native', ['init', this.name]);
-      // ensure temp dir
-      this.makeDirectories(this.name);
-      // Grab latest RNBase
-      _shelljs2.default.exec('git clone git@github.com:infinitered/react_native_base.git ' + this.name + '/' + TEMP_FOLDER);
+      // this.verifyTools()
+      // // No clue why this is needed
+      // console.log('When directory already exists, please type `yes` to continue.')
+      // // Create latest RN project
+      // this.spawnCommandSync('react-native', ['init', this.name])
+      // // ensure temp dir
+      // this.makeDirectories(this.name)
+      // // Grab latest RNBase
+      // Shell.exec(`git clone git@github.com:infinitered/react_native_base.git ${gitRoot}`)
+
+      // templatePut(gitRoot, templateRoot, `package.json`)
+      // WORKS TO HERE
+
+      this.fs.copyTpl(this.templatePath('package.json.template'), this.destinationPath(this.name + '/package.json'), { name: this.name });
+
+      this.fs.copyTpl(this.templatePath('index.js.template'), this.destinationPath(this.name + '/index.ios.js'), { name: this.name });
+
+      this.fs.copyTpl(this.templatePath('index.js.template'), this.destinationPath(this.name + '/index.android.js'), { name: this.name });
+
+      // this.copyOver.bind(this)
+      // Copy over
+      // Do npm install
+      // Do rnpm link
+      // Cleanup
 
       console.log('Time to get cooking!');
 
