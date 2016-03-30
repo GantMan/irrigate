@@ -85,24 +85,26 @@ class AppGenerator extends NamedBase {
     // force overwrite on conflicts (default is ask user)
     this.conflicter.force = true
 
-    // Fail if tools are missing
-    this.verifyTools()
-    // No clue why this is needed
-    console.log('When directory already exists, please type `yes` to continue.')
-    // Create latest RN project
-    this.spawnCommandSync('react-native', ['init', this.name])
-    // ensure temp dir
-    this.makeDirectories(this.name)
-    // Grab latest RNBase
-    Shell.exec(`git clone git@github.com:infinitered/react_native_base.git ${gitRoot}`)
+    // // Fail if tools are missing
+    // this.verifyTools()
+    // // No clue why this is needed
+    // console.log('When directory already exists, please type `yes` to continue.')
+    // // Create latest RN project
+    // this.spawnCommandSync('react-native', ['init', this.name])
+    // // ensure temp dir
+    // this.makeDirectories(this.name)
+    // // Grab latest RNBase
+    // Shell.exec(`git clone git@github.com:infinitered/react_native_base.git ${gitRoot}`)
+    Shell.exec(`git clone git@github.com:infinitered/react_native_base.git ${this.sourceRoot()}`)
+    // // templatePut(gitRoot, this.sourceRoot(), `package.json`)
+    // this.copyOver.bind(this)
 
-    // templatePut(gitRoot, this.sourceRoot(), `package.json`)
-    this.copyOver.bind(this)
+    // // npm install new package.json via `npm --prefix ./some_project install ./some_project`
+    // this.spawnCommandSync('npm', ['--prefix', `./${this.name}`, 'install', `./${this.name}`])
+    // // Do rnpm link
+    // Shell.exec(`cd ${this.name} && rnpm link`)
 
-    // npm install new package.json via `npm --prefix ./some_project install ./some_project`
-    this.spawnCommandSync('npm', ['--prefix', `./${this.name}`, 'install', `./${this.name}`])
-    // Do rnpm link
-    Shell.exec(`cd ${this.name} && rnpm link`)
+    //this.spawnCommandSync('react-native', ['init', this.name])
 
     console.log('Time to get cooking!')
 
