@@ -47,8 +47,6 @@ class AppGenerator extends NamedBase {
     })
   }
 
-    // worth noting but requires template
-    // this.bulkCopy(`./${this.name}/${TEMP_FOLDER}/App`, `./${this.name}/App`)
   copyOver () {
     // copy package.json
     this.fs.copyTpl(
@@ -82,33 +80,29 @@ class AppGenerator extends NamedBase {
   }
 
   generateApp () {
-    console.log(colors.yellow('irrigate app - ') + this.name + ' ☕️ This will take a while ☕️ ')
-    const templateRoot = this.sourceRoot()
+    console.log(colors.yellow('irrigate app -> ') + this.name + ' ☕️ This will take a while ☕️ ')
     const gitRoot = `${this.name}/${TEMP_FOLDER}`
     // force overwrite on conflicts (default is ask user)
     this.conflicter.force = true
 
     // Fail if tools are missing
-    // this.verifyTools()
-    // // No clue why this is needed
-    // console.log('When directory already exists, please type `yes` to continue.')
-    // // Create latest RN project
-    // this.spawnCommandSync('react-native', ['init', this.name])
-    // // ensure temp dir
-    // this.makeDirectories(this.name)
-    // // Grab latest RNBase
-    // Shell.exec(`git clone git@github.com:infinitered/react_native_base.git ${gitRoot}`)
+    this.verifyTools()
+    // No clue why this is needed
+    console.log('When directory already exists, please type `yes` to continue.')
+    // Create latest RN project
+    this.spawnCommandSync('react-native', ['init', this.name])
+    // ensure temp dir
+    this.makeDirectories(this.name)
+    // Grab latest RNBase
+    Shell.exec(`git clone git@github.com:infinitered/react_native_base.git ${gitRoot}`)
 
-    // templatePut(gitRoot, templateRoot, `package.json`)
-    // this.copyOver.bind(this)
+    // templatePut(gitRoot, this.sourceRoot(), `package.json`)
+    this.copyOver.bind(this)
 
-
-    // WORKS TO HERE
-
-    // Copy over
-    // Do npm install
+    // npm install new package.json via `npm --prefix ./some_project install ./some_project`
+    this.spawnCommandSync('npm', ['--prefix', `./${this.name}`, 'install', `./${this.name}`])
     // Do rnpm link
-    // Cleanup
+    Shell.exec(`cd ${this.name} && rnpm link`)
 
     console.log('Time to get cooking!')
 

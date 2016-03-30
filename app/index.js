@@ -87,8 +87,27 @@ var AppGenerator = function (_NamedBase) {
   }, {
     key: 'copyOver',
     value: function copyOver() {
-      // copy package.json
-      // copy index.ios.js/index.android.js/index.js
+      // // copy package.json
+      // this.fs.copyTpl(
+      //   this.templatePath('package.json.template'),
+      //   this.destinationPath(`${this.name}/package.json`),
+      //   { name: this.name }
+      // )
+
+      // // copy template of index.ios.js
+      // this.fs.copyTpl(
+      //   this.templatePath('index.js.template'),
+      //   this.destinationPath(`${this.name}/index.ios.js`),
+      //   { name: this.name }
+      // )
+
+      // // copy template of index.android.js
+      // this.fs.copyTpl(
+      //   this.templatePath('index.js.template'),
+      //   this.destinationPath(`${this.name}/index.android.js`),
+      //   { name: this.name }
+      // )
+
       // copy git_hooks/
       templateGrab(this.name, 'git_hooks');
       // copy Tests/
@@ -101,7 +120,7 @@ var AppGenerator = function (_NamedBase) {
   }, {
     key: 'generateApp',
     value: function generateApp() {
-      console.log(_safe2.default.yellow('irrigate app - ') + this.name + ' ☕️ This will take a while ☕️ ');
+      console.log(_safe2.default.yellow('irrigate app -> ') + this.name + ' ☕️ This will take a while ☕️ ');
       var templateRoot = this.sourceRoot();
       var gitRoot = this.name + '/' + TEMP_FOLDER;
       // force overwrite on conflicts (default is ask user)
@@ -119,17 +138,13 @@ var AppGenerator = function (_NamedBase) {
       // Shell.exec(`git clone git@github.com:infinitered/react_native_base.git ${gitRoot}`)
 
       // templatePut(gitRoot, templateRoot, `package.json`)
-      // WORKS TO HERE
-
-      this.fs.copyTpl(this.templatePath('package.json.template'), this.destinationPath(this.name + '/package.json'), { name: this.name });
-
-      this.fs.copyTpl(this.templatePath('index.js.template'), this.destinationPath(this.name + '/index.ios.js'), { name: this.name });
-
-      this.fs.copyTpl(this.templatePath('index.js.template'), this.destinationPath(this.name + '/index.android.js'), { name: this.name });
-
       // this.copyOver.bind(this)
-      // Copy over
-      // Do npm install
+
+      // npm install new package.json via `npm --prefix ./some_project install ./some_project`
+      // this.spawnCommandSync('npm', ['--prefix', `./${this.name}`, 'install', `./${this.name}`])
+      // WORKS TO HERE
+      _shelljs2.default.exec('cd ' + this.name + ' && rnpm link');
+
       // Do rnpm link
       // Cleanup
 
