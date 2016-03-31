@@ -31,18 +31,13 @@ const verifyTools = () => {
   Shell.exec(`npm outdated rnpm`)
 }
 
-// const makeDirectories = (name) => {
-//   mkdirp(`${name}/${TEMP_FOLDER}`, (err) => {
-//     if (err) {
-//       console.log(err)
-//       Shell.exit(1)
-//     }
-//   })
-// }
-
 const copyOverBase = (context) => {
-  // copy a Readme template not ours
-  // TODO
+  // copy New project Readme
+  context.fs.copyTpl(
+    context.templatePath('README.md.template'),
+    context.destinationPath(`${context.name}/README.md`),
+    { name: context.name }
+  )
 
   // copy package.json
   context.fs.copyTpl(
