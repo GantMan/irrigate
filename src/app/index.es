@@ -121,7 +121,7 @@ class AppGenerator extends NamedBase {
     // Clean template folder
     emptyFolder(this.templateFolder)
 
-    console.log('Time to get cooking! ' + colors.red('IRrigate is Done!'))
+    console.log('Time to get cooking! 🍽 ' + colors.red('IR') + colors.green('rigate is Done! 💦'))
   }
 }
 
