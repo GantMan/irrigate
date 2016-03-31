@@ -87,7 +87,7 @@ const emptyFolder = (folder) => {
 
 class AppGenerator extends NamedBase {
   initializing () {
-    console.log(colors.yellow('irrigate app -> ') + this.name + ' ☕️ This will take a while ☕️ ')
+    console.log(colors.yellow('irrigate app -> ') + this.name + ' ☕️  This will take a while ☕️ ')
     // force overwrite on conflicts (default is ask user)
     this.conflicter.force = true
 
