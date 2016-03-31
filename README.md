@@ -20,13 +20,13 @@ Now install irrigate generator
 
 
 ## When Developing
-Run `nmp link` to link this code base locally and so you don't have to keep reinstalling, you've got a symlink.
+Run `npm link` to link this code base locally and so you don't have to keep reinstalling, you've got a symlink.
 
 ## Compile
 Code is written in ES2015+, so `npm run compile` will babelfy the source.
 
 ## TODO LIST
-This was originally concevied without Yeoman, so there's a good bit of overlap with yeoman functionality over included functionality.   Once we're sure we're going 100% with Yeoman or not it would be ideal to unify the syntax.
+This was originally conceived without Yeoman, so there's a good bit of overlap with yeoman functionality over included functionality.   Once we're sure we're going 100% with Yeoman or not it would be ideal to unify the syntax.
 
 Sagas
 
