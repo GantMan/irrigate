@@ -95,32 +95,44 @@ var AppGenerator = function (_NamedBase) {
   }
 
   _createClass(AppGenerator, [{
-    key: 'generateApp',
-    value: function generateApp() {
-      var templateFolder = this.sourceRoot();
+    key: 'initializing',
+    value: function initializing() {
       console.log(_safe2.default.yellow('irrigate app -> ') + this.name + ' ☕️ This will take a while ☕️ ');
       // force overwrite on conflicts (default is ask user)
       this.conflicter.force = true;
 
       // Fail if tools are missing
       verifyTools();
+
+      this.templateFolder = this.sourceRoot();
       // Clean template folder
-      emptyFolder(templateFolder);
+      emptyFolder(this.templateFolder);
+    }
+  }, {
+    key: 'generateApp',
+    value: function generateApp() {
       // Create latest RN project
       this.spawnCommandSync('react-native', ['init', this.name]);
 
       // Grab latest RNBase into templates folder
-      _shelljs2.default.exec('git clone git@github.com:infinitered/react_native_base.git ' + templateFolder);
+      _shelljs2.default.exec('git clone git@github.com:infinitered/react_native_base.git ' + this.templateFolder);
 
       // Copy over files from RN Base that apply
       copyOverBase(this);
-
+    }
+  }, {
+    key: 'install',
+    value: function install() {
       // npm install copied package.json via `npm --prefix ./some_project install ./some_project`
       this.spawnCommandSync('npm', ['--prefix', './' + this.name, 'install', './' + this.name]);
       // Do rnpm link
       _shelljs2.default.exec('cd ' + this.name + ' && rnpm link');
+    }
+  }, {
+    key: 'end',
+    value: function end() {
       // Clean template folder
-      emptyFolder(templateFolder);
+      emptyFolder(this.templateFolder);
 
       console.log('Time to get cooking! ' + _safe2.default.red('IRrigate is Done!'));
     }

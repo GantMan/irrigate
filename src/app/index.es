@@ -90,31 +90,40 @@ const emptyFolder = (folder) => {
 }
 
 class AppGenerator extends NamedBase {
-  generateApp () {
-    const templateFolder = this.sourceRoot()
+  initializing () {
     console.log(colors.yellow('irrigate app -> ') + this.name + ' ☕️ This will take a while ☕️ ')
     // force overwrite on conflicts (default is ask user)
     this.conflicter.force = true
 
     // Fail if tools are missing
     verifyTools()
+
+    this.templateFolder = this.sourceRoot()
     // Clean template folder
-    emptyFolder(templateFolder)
+    emptyFolder(this.templateFolder)
+  }
+
+  generateApp () {
     // Create latest RN project
     this.spawnCommandSync('react-native', ['init', this.name])
 
     // Grab latest RNBase into templates folder
-    Shell.exec(`git clone git@github.com:infinitered/react_native_base.git ${templateFolder}`)
+    Shell.exec(`git clone git@github.com:infinitered/react_native_base.git ${this.templateFolder}`)
 
     // Copy over files from RN Base that apply
     copyOverBase(this)
+  }
 
+  install () {
     // npm install copied package.json via `npm --prefix ./some_project install ./some_project`
     this.spawnCommandSync('npm', ['--prefix', `./${this.name}`, 'install', `./${this.name}`])
     // Do rnpm link
     Shell.exec(`cd ${this.name} && rnpm link`)
+  }
+
+  end () {
     // Clean template folder
-    // emptyFolder(templateFolder)
+    emptyFolder(this.templateFolder)
 
     console.log('Time to get cooking! ' + colors.red('IRrigate is Done!'))
   }
